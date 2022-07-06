@@ -3,7 +3,6 @@ using Flurl.Http;
 using Knab.Library.ApiClient.Interfaces;
 using Knab.Library.ApiClient.Models;
 using Knab.Library.ApiClient.Models.ExchangeRatesApi;
-using Newtonsoft.Json;
 
 namespace Knab.Library.ApiClient.ResourceAccess
 {
@@ -21,11 +20,11 @@ namespace Knab.Library.ApiClient.ResourceAccess
 
   public class ExchangeRatesApiClient : ICurrencyConversionApiClient
   {
-    private readonly IApiClientConfiguration _configuration;
+    private readonly ApiClientConfiguration _configuration;
 
     private const string RESPONSERECEIVEDISNULL = "The response received from the server could not be parsed to the given type.";
     private const string RESPONSERECEIVEDISUNSUCCESSFUL = "The request to the currency conversion provider was unsuccessful.";
-    public ExchangeRatesApiClient(IApiClientConfiguration configuration)
+    public ExchangeRatesApiClient(ApiClientConfiguration configuration)
     {
       _configuration = configuration;
     }
