@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knab", "Knab\Knab.csproj", "{38E7EAD7-2A1A-46B2-BEC3-CA62F6F45521}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knab.Library.ApiClient", "Knab.Library.ApiClient\Knab.Library.ApiClient.csproj", "{8F1BEC8A-F8AA-4F20-B78E-3D7F70624217}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{38E7EAD7-2A1A-46B2-BEC3-CA62F6F45521}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38E7EAD7-2A1A-46B2-BEC3-CA62F6F45521}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38E7EAD7-2A1A-46B2-BEC3-CA62F6F45521}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F1BEC8A-F8AA-4F20-B78E-3D7F70624217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F1BEC8A-F8AA-4F20-B78E-3D7F70624217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F1BEC8A-F8AA-4F20-B78E-3D7F70624217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F1BEC8A-F8AA-4F20-B78E-3D7F70624217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
