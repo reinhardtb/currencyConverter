@@ -9,10 +9,10 @@ namespace Knab.Library.ApiClient.Models.ExchangeRatesApi
     [JsonPropertyAttribute("timestamp")]
     internal long UnixTimestampTicks { get; set; }
     [JsonPropertyAttribute("base")]
-    internal string BaseCurrencyCode { get; set; }
+    internal string? BaseCurrencyCode { get; set; }
     [JsonPropertyAttribute("date")]
-    internal string Date { get; set; }
+    internal string? Date { get; set; }
     [JsonPropertyAttribute("rates")]
-    internal Dictionary<string, double> ConversionRates { get; set; }
+    internal Dictionary<string, double>? ConversionRates { get; set; }
   }
 }

@@ -2,7 +2,7 @@
 {
   public class CurrencyConversion
   {
-    public string CurrencyCode { get; set; }
+    public string? CurrencyCode { get; set; }
     public double ConversionRate { get; set; }
   }
 }

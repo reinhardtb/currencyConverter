@@ -24,6 +24,13 @@ namespace Knab.Library.ApiClient.ResourceAccess
 
     private const string RESPONSERECEIVEDISNULL = "The response received from the server could not be parsed to the given type.";
     private const string RESPONSERECEIVEDISUNSUCCESSFUL = "The request to the currency conversion provider was unsuccessful.";
+    private const string RESPONSERECEIVEDCONTAINSNOCONVERSIONS = "The request to the currency conversion provider did not return any conversion rates.";
+    private const string INVALIDURICONFIGURATION = "The API URI provided through configuration is invalid.";
+    private const string INVALIDAPIKEYCONFIGURATION = "The API key provided through configuration can not authorize the request.";
+    private const string INVALIDAPIREQUEST = "The request failed. This could be due to the input currency code not being found.";
+    private const int HTTPUNAUTHORIZEDSTATUSCODE = 401;
+    private const int HTTPBADREQUESTSTATUSCODE = 400;
+
     public ExchangeRatesApiClient(ApiClientConfiguration configuration)
     {
       _configuration = configuration;
@@ -44,13 +51,26 @@ namespace Knab.Library.ApiClient.ResourceAccess
         if (conversionsResponse == null)
           throw new ArgumentException(RESPONSERECEIVEDISNULL);
         else if (!conversionsResponse.Success)
-          throw new ArgumentException(RESPONSERECEIVEDISUNSUCCESSFUL);
+          throw new HttpRequestException(RESPONSERECEIVEDISUNSUCCESSFUL);
+
+        if (conversionsResponse.ConversionRates == null ||
+          !conversionsResponse.ConversionRates.Any())
+          throw new ArgumentException(RESPONSERECEIVEDCONTAINSNOCONVERSIONS);
 
         return conversionsResponse.ConversionRates.Select(rate => new CurrencyConversion { CurrencyCode = rate.Key, ConversionRate = rate.Value });
       }
-      catch (Exception)
+      catch (UriFormatException ufex)
       {
-        throw;
+        throw new ArgumentException(INVALIDURICONFIGURATION, ufex);
+      }
+      catch (FlurlHttpException fhex)
+      {
+        if (fhex.StatusCode == HTTPUNAUTHORIZEDSTATUSCODE)
+          throw new ArgumentException(INVALIDAPIKEYCONFIGURATION, fhex);
+        else if (fhex.StatusCode == HTTPBADREQUESTSTATUSCODE)
+          throw new ArgumentException(INVALIDAPIREQUEST, fhex);
+        else
+          throw;
       }
     }
   }
